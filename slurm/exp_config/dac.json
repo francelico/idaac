@@ -1,0 +1,11 @@
+{
+  "grid": {
+    "adv_loss_coef": [0.0],
+    "algo": ["daac"],
+    "seed": [10],
+
+    "log_dir": ["logs/exp_dac"],
+    "save_dir": ["models/exp_dac"],
+    "preemptible": [true]
+  }
+}

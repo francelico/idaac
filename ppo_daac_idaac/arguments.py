@@ -169,3 +169,10 @@ parser.add_argument(
     type=int,
     default=0,
     help='start level id for sampling Procgen levels')
+
+# Slurm arguments.
+parser.add_argument(
+    '--preemptible',
+    action='store_true',
+    default=False,
+)

@@ -21,6 +21,7 @@ from ppo_daac_idaac.model import PPOnet, IDAACnet, \
 from ppo_daac_idaac.storage import DAACRolloutStorage, \
     IDAACRolloutStorage, RolloutStorage
 from ppo_daac_idaac.envs import VecPyTorchProcgen
+from utils import job_util
 
 
 def train(args):
@@ -35,6 +36,7 @@ def train(args):
             args.use_nonlinear_clf = True
         else:
             args.use_nonlinear_clf = False
+    runstate = job_util.RunState(None, save_fn=lambda *args: None)
     print("\nArguments: ", args)
 
     torch.manual_seed(args.seed)
@@ -200,6 +202,7 @@ def train(args):
 
         # Save Model
         if j == num_updates - 1 and args.save_dir != "":
+            runstate.after_training(None, args)
             try:
                 os.makedirs(args.save_dir)
             except OSError:
@@ -208,7 +211,7 @@ def train(args):
             torch.save([
                 actor_critic,
                 getattr(envs, 'ob_rms', None)
-            ], os.path.join(args.save_dir, "agent{}.pt".format(log_file))) 
+            ], os.path.join(args.save_dir, "agent{}.pt".format(log_file)))
 
         # Save Logs
         total_num_steps = (j + 1) * args.num_processes * args.num_steps
@@ -230,6 +233,9 @@ def train(args):
             logger.logkv("test/median_episode_reward", np.median(eval_episode_rewards))
 
             logger.dumpkvs()
+
+        runstate.apply_signals(j, None, args)
+    runstate.after_eval(None, args)
 
 
 if __name__ == "__main__":

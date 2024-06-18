@@ -1,0 +1,14 @@
+{
+  "grid": {
+    "adv_loss_coef": [0.25],
+    "algo": ["daac"],
+    "seed": [10],
+    "num_processes": [8],
+    "num_env_steps": [8000],
+
+    "log_interval": [1],
+    "log_dir": ["logs/test_daac"],
+    "save_dir": ["models/test_daac"],
+    "preemptible": [true]
+  }
+}
