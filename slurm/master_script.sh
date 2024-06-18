@@ -2,12 +2,12 @@ partition=$1
 shift 1
 experiment_lists=("$@")
 
-JOBNAME="cleanba-procgen"
+JOBNAME="idaac-procgen"
 MAXJOBS=128
 JOBCOUNT=0
 batch_script=job_${partition}.sh
 
-cd ~/stacked_metrics/cleanba/slurm
+cd ~/idaac/slurm
 SLEEP_TIME=1
 
 for experiment_list in "${experiment_lists[@]}"; do

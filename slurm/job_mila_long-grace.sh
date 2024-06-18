@@ -20,10 +20,10 @@
 # ====================
 
 # Location for stdout log - see https://slurm.schedmd.com/sbatch.html#lbAH
-#SBATCH --output=/home/mila/s/%u/stacked_metrics/cleanba/slurm/slurm_logs/slurm-%A_%a.out
+#SBATCH --output=/home/mila/s/%u/idaac/slurm/slurm_logs/slurm-%A_%a.out
 
 # Location for stderr log - see https://slurm.schedmd.com/sbatch.html#lbAH
-#SBATCH --error=/home/mila/s/%u/stacked_metrics/cleanba/slurm/slurm_logs/slurm-%A_%a.out
+#SBATCH --error=/home/mila/s/%u/idaac/slurm/slurm_logs/slurm-%A_%a.out
 
 #SBATCH --partition=long-grace
 
@@ -72,13 +72,13 @@ module load cuda/12.0
 module load anaconda/3
 
 # Activate your conda environment
-CONDA_ENV_NAME=cleanba
+CONDA_ENV_NAME=idaac
 echo "Activating conda environment: ${CONDA_ENV_NAME}"
 conda activate ${CONDA_ENV_NAME}
 
-REPO_DIR=$HOME/stacked_metrics
+REPO_DIR=$HOME/idaac
 export PYTHONPATH="${PYTHONPATH}:$REPO_DIR"
-EXP_FILEPATH=$REPO_DIR/cleanba/slurm/exp_files/${experiment_text_file}
+EXP_FILEPATH=$REPO_DIR/slurm/exp_files/${experiment_text_file}
 
 cd $REPO_DIR
 echo "Running experiment ${experiment_no} from ${experiment_text_file}"
