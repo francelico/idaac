@@ -69,9 +69,11 @@ echo "Job started: $dt"
 
 echo "Loading modules"
 module load cuda/12.0
-source $HOME/.bashrc
 
 # Activate your conda environment
+# Explicitly activate conda
+source $HOME/.bashrc
+source $HOME/miniconda3/etc/profile.d/conda.sh
 CONDA_ENV_NAME=idaac
 echo "Activating conda environment: ${CONDA_ENV_NAME}"
 conda activate ${CONDA_ENV_NAME}
