@@ -128,6 +128,7 @@ if __name__ == '__main__':
 
     # Default parameters
     params = vars(parser.parse_args([]))
+    params['num_env_steps'] = int(params['num_env_steps'])
 
     json_filename = args.json
     if not json_filename.endswith('.json'):
