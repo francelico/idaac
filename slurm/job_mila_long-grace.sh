@@ -46,7 +46,7 @@
 #SBATCH --requeue
 
 # Exclude nodes with known issues
-#SBATCH --exclude=cn-g026
+#SBATCH --exclude=cn-g[001-099],cn-k[001-099]
 
 #SBATCH --signal=SIGINT@120
 
