@@ -69,7 +69,7 @@ echo "Job started: $dt"
 
 echo "Loading modules"
 module load cuda/12.0
-module load anaconda/3
+source $HOME/.bashrc
 
 # Activate your conda environment
 CONDA_ENV_NAME=idaac
